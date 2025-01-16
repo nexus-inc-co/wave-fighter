@@ -14,12 +14,12 @@ class Character {
     this.height = 90;
     this.image = new Image();
     this.image.src = "";
-    this.speed = 1;
+    this.speed = 4;
     this.currentFrame = 0;
     this.frameCount = 3;
     this.frameWidth = 500;
     this.frameHeight = 600;
-    this.animationSpeed = 11;
+    this.animationSpeed = 16;
     this.animationCounter = 0;
     this.isMoving = false;
     this.facingLeft = false;

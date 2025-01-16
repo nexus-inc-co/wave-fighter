@@ -1,11 +1,13 @@
 body {
   font-family: "Micro 5", serif;
   background-color: black;
+  overflow: hidden;
 }
 
 .background {
   position: fixed;
   background-image: url(../Fotos/backgrounds/background3.png);
+  background-position: center;
   top: 0;
   left: 0;
   width: 100vw;
@@ -13,35 +15,57 @@ body {
   background-size: cover;
   z-index: -1;
 }
+
 .Link {
   text-decoration: none;
   text-decoration-line: none;
 }
-.button-box {
-  z-index: 2;
-  position: relative;
-  width: 100%;
-  height: auto;
-  top: 50vh;
-}
 
 .button-box {
-  width: 50%; /* Set width of the container */
-  margin: 0 auto; /* Center the container horizontally */
-  display: flex; /* Enables Flexbox */
-  align-items: center; /* Centers content vertically */
-  justify-content: center; /* Centers content horizontally */
-  height: 100vh; /* Full viewport height to center vertically */
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  position: absolute; /* Allows precise centering */
+  top: 50%;
+  left: 49.5%;
+  transform: translate(-50%, -50%); /* Centers container in viewport */
+  width: 100%; /* Full width of the viewport */
+  height: 60%; /* Full height of the viewport */
+  margin-top: 7%;
 }
 
-.Button.Start {
-  width: 60%; /* Set button width relative to container */
-  height: auto; /* Adjust height based on aspect ratio */
-  background-image: url(../Fotos/buttons/start-button.png); /* Button image */
+/* Buttons */
+.Button.Start,
+.Button.Character,
+.Button.Quit {
+  width: 60%; /* Default button width for medium screens */
+  max-width: 500px; /* Maximum width for large screens */
+  height: auto; /* Maintain aspect ratio */
   background-size: contain; /* Ensures image fits button dimensions */
   background-repeat: no-repeat; /* Prevents image tiling */
   background-position: center; /* Centers the image */
-  border: none; /* Removes default button border */
   cursor: pointer; /* Adds a pointer cursor */
-  outline: none; /* Removes focus outline */
+  margin: 20px 0; /* Space between buttons */
 }
+
+/* Media Queries for responsiveness */
+@media (min-width: 1024px) {
+  .Button.Start,
+  .Button.Character,
+  .Button.Quit {
+    width: 100%; /* Reduce button width for larger screens */
+    max-width: 500px; /* Allow slightly larger buttons */
+  }
+}
+
+@media (min-width: 1440px) {
+  .Button.Start,
+  .Button.Character,
+  .Button.Quit {
+    width: 100%; /* Further reduce button width for ultra-wide screens */
+    max-width: 500px; /* Increase max width for larger displays */
+  }
+}
+/*media quary*/
+/*credits nog maken en nog een button toevoegen meer characters maken en de main page ook nog maken repsonsive met zoom */
