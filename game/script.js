@@ -8,49 +8,48 @@ let keys = {};
 
 class Character {
   constructor(x, y) {
-    this.x = x; // X position
-    this.y = y; // Y position
-    this.width = 75; // Width of the character
-    this.height = 90; // Height of the character
-    this.image = new Image(); // Create a new image object
-    this.image.src = ""; // Initially no image
-    this.speed = 4; // Movement speed
-    this.currentFrame = 0; // Current frame for animation
-    this.frameCount = 3; // Total number of frames in the walking animation
-    this.frameWidth = 500; // Width of each frame
-    this.frameHeight = 600; // Height of each frame
-    this.animationSpeed = 10; // Speed of the animation
-    this.animationCounter = 0; // Counter to control frame switching
-    this.isMoving = false; // Track if the character is moving
-    this.facingLeft = false; // Track if the character is facing left
+    this.x = x;
+    this.y = y;
+    this.width = 75;
+    this.height = 90;
+    this.image = new Image();
+    this.image.src = "";
+    this.speed = 1;
+    this.currentFrame = 0;
+    this.frameCount = 3;
+    this.frameWidth = 500;
+    this.frameHeight = 600;
+    this.animationSpeed = 11;
+    this.animationCounter = 0;
+    this.isMoving = false;
+    this.facingLeft = false;
   }
 
   selectCharacter(character) {
     switch (character) {
       case "character1":
-        this.image.src = "Fotos/sprites/character_sprites.png";
-        break; // Add break statements
+        this.image.src = "../Fotos/sprites/sprites4.png";
+        break;
       case "character2":
-        this.image.src = "Fotos/sprites/character_sprites2.png";
+        this.image.src = "../Fotos/sprites/character_sprites2.png";
         break;
       case "character3":
-        this.image.src = "Fotos/sprites/character_sprites3.png"; // Adjust path
+        this.image.src = "assets/character_sprites3.png";
         break;
       default:
         break;
     }
-
-    // Load the new image and reset the frame
     this.image.onload = () => {
-      this.currentFrame = 0; // Reset frame on character change
+      this.currentFrame = 0;
+      console.log("Image loaded:", this.image.src);
     };
   }
 
   draw(ctx) {
-    ctx.save(); // Save the current context state
+    ctx.save();
     if (this.facingLeft) {
-      ctx.translate(this.x + this.width, this.y); // Move to the right edge of the character
-      ctx.scale(-1, 1); // Flip the context horizontally
+      ctx.translate(this.x + this.width, this.y);
+      ctx.scale(-1, 1);
       ctx.drawImage(
         this.image,
         this.currentFrame * this.frameWidth,
@@ -75,77 +74,70 @@ class Character {
         this.height
       );
     }
-    ctx.restore(); // Restore the context to its original state
+    ctx.restore();
   }
 
   move(keys) {
-    this.isMoving = false; // Reset moving state
+    this.isMoving = false;
     if (keys["w"] && this.y > 0) {
-      this.y -= this.speed; // Move up
-      this.isMoving = true; // Set moving state
+      this.y -= this.speed;
+      this.isMoving = true;
     }
     if (keys["s"] && this.y < canvas.height - this.height) {
-      this.y += this.speed; // Move down
-      this.isMoving = true; // Set moving state
+      this.y += this.speed;
+      this.isMoving = true;
     }
     if (keys["a"] && this.x > 0) {
-      this.x -= this.speed; // Move left
-      this.isMoving = true; // Set moving state
-      this.facingLeft = true; // Set facing direction
+      this.x -= this.speed;
+      this.isMoving = true;
+      this.facingLeft = true;
     }
     if (keys["d"] && this.x < canvas.width - this.width) {
-      this.x += this.speed; // Move right
-      this.isMoving = true; // Set moving state
-      this.facingLeft = false; // Set facing direction
+      this.x += this.speed;
+      this.isMoving = true;
+      this.facingLeft = false;
     }
     if (this.isMoving) {
       this.animationCounter++;
       if (this.animationCounter >= this.animationSpeed) {
-        this.currentFrame = (this.currentFrame + 1) % this.frameCount; // Loop through frames
-        this.animationCounter = 0; // Reset the counter
+        this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+        this.animationCounter = 0;
       }
     } else {
-      this.currentFrame = 0; // Reset to the standing frame if not moving
+      this.currentFrame = 0;
     }
   }
 }
 
 document.addEventListener("keydown", (e) => {
-  keys[e.key] = true; // Track key presses
+  keys[e.key] = true;
 });
 
 document.addEventListener("keyup", (e) => {
-  keys[e.key] = false; // Track key releases
+  keys[e.key] = false;
 });
 
-// Character selection function
-function selectCharacter(character) {
-  player.selectCharacter(character);
-}
-
-// Initialize the game
 function init() {
-  player = new Character(canvas.width / 2, canvas.height / 2); // Create a new character at the center of the canvas
-  selectCharacter("character1"); // Set a default character
-  update(); // Start the game loop
+  player = new Character(canvas.width / 2, canvas.height / 2);
+  player.selectCharacter("character1");
+  update();
 }
 
 function update() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-  player.move(keys); // Move the player based on key inputs
-  player.draw(ctx); // Draw the player on the canvas
-  requestAnimationFrame(update); // Request the next frame
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  player.move(keys);
+  player.draw(ctx);
+  requestAnimationFrame(update);
 }
 
-// Example of character selection via keyboard input
 document.addEventListener("keydown", (e) => {
   if (e.key === "1") {
-    selectCharacter("character1"); // Select character 1
+    player.selectCharacter("character1");
   } else if (e.key === "2") {
-    selectCharacter("character2"); // Select character 2
+    player.selectCharacter("character2");
   } else if (e.key === "3") {
-    selectCharacter("character3"); // Select character 3
+    player.selectCharacter("character3");
   }
 });
 
-init(); // Initialize the game
+init();
