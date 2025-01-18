@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Selector</title>
+    <link rel="stylesheet" href="character.css" />
+  </head>
+  <body>
+    <div class="back-button">
+      <button type="button" onclick="window.location.href='../main/main.html'">
+        &#60; Back
+      </button>
+    </div>
+
+    <div class="selector">
+      <div class="character" id="character-display">
+        <img id="character-image" src="character1.png" alt="Character 1" />
+      </div>
+
+      <div class="right-container">
+        <div class="skills" id="skills-display">
+          <p><strong>Name:</strong> Warrior</p>
+          <p><strong>Health:</strong> 100</p>
+          <p><strong>Strength:</strong> 80</p>
+          <p><strong>Ability:</strong> Shield Block</p>
+          <button id="upgrade">Upgrade</button>
+        </div>
+        <button id="Select"><b>Select Character</b></button>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button id="prev" onclick="navigate('prev')">Prev</button>
+      <button id="next" onclick="navigate('next')">Next</button>
+    </div>
+
+    <script src="character.js"></script>
+  </body>
+</html>

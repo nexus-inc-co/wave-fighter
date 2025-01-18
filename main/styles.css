@@ -1,0 +1,119 @@
+body {
+  font-family: "Micro 5", serif;
+  background-color: black;
+  overflow: hidden;
+}
+
+.background {
+  position: fixed;
+  background-image: url(../Fotos/backgrounds/background3.png);
+  background-position: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  z-index: -1;
+}
+
+.Link {
+  text-decoration: none;
+  text-decoration-line: none;
+}
+
+.button-box {
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  position: absolute; /* Allows precise centering */
+  top: 50%;
+  left: 49.5%;
+  transform: translate(-50%, -50%); /* Centers container in viewport */
+  width: 100%; /* Full width of the viewport */
+  height: 50%; /* Full height of the viewport */
+  margin-top: 7%;
+}
+
+/* Buttons */
+.Button.Start,
+.Button.Character,
+.Button.Quit {
+  width: 60%; /* Default button width for medium screens */
+  max-width: 500px; /* Maximum width for large screens */
+  height: auto; /* Maintain aspect ratio */
+  background-size: contain; /* Ensures image fits button dimensions */
+  background-repeat: no-repeat; /* Prevents image tiling */
+  background-position: center; /* Centers the image */
+  cursor: pointer; /* Adds a pointer cursor */
+  margin: 0; /* Space between buttons */
+}
+.Button.Start {
+  animation: Start 2s ease-in-out forwards;
+}
+.Button.Character {
+  animation: Character 2.5s ease-in-out forwards;
+}
+.Button.Quit {
+  animation: Quit 3s ease-in-out forwards;
+}
+@keyframes Start {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes Character {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes Quit {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* Media Queries for responsiveness */
+@media (min-width: 1024px) {
+  .Button.Start,
+  .Button.Character,
+  .Button.Quit {
+    width: 100%; /* Reduce button width for larger screens */
+    max-width: 500px; /* Allow slightly larger buttons */
+  }
+}
+
+@media (min-width: 1440px) {
+  .Button.Start,
+  .Button.Character,
+  .Button.Quit {
+    width: 100%; /* Further reduce button width for ultra-wide screens */
+    max-width: 500px; /* Increase max width for larger displays */
+  }
+}
+/*media quary*/
+/*credits nog maken en nog een button toevoegen meer characters maken en de main page ook nog maken repsonsive met zoom */
