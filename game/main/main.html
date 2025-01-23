@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="button-box">
+        <a href="../game/game.html" class="Link"
+          ><img class="Button Start" src="../Fotos/buttons/start-button.png"></img
+        ></a>
+        <a href="../character-menu/character.html" class="Link"
+          ><img class="Button Character" src="../Fotos/buttons/character-button.png"></img></a
+        >
+        <img id="quitButton" class="Button Quit" src="../Fotos/buttons/quit-button.png"></img>
+      </div>
+      <button type="button" class="button-credits">Credits</button>
+      <div class="background"></div>
+    </div>
+    <p id="coinDisplay">Coins: 0</p>
+
+    <script>
+      document
+        .getElementById("quitButton")
+        .addEventListener("click", function () {
+          // Perform any cleanup or save state here
+          alert("Exiting the application...");
+          // For web applications, you might redirect or close the window
+          window.close(); // Note: This may not work in all browsers due to security restrictions
+        });
+
+        let coins = localStorage.getItem("coins")
+  ? parseInt(localStorage.getItem("coins"))
+  : 0;
+function updateCoinDisplay() {
+  document.getElementById("coinDisplay").textContent = `Coins: ${coins}`;
+}
+window.onload = function () {
+  updateCoinDisplay();
+};
+
+    </script>
+  </body>
+</html>
